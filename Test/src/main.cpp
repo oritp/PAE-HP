@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
 
 int main(void){
 
-    printf("Hello Albert");
+   std :: cout << "Hello Albert";
 }
