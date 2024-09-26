@@ -4,5 +4,7 @@
 
 int main(void){
 
-   std :: cout << "Hello Albert";
+   std :: cout << "Hello everyone";
+   std :: cout << "Bye";
+   std :: cout << "Hiii";
 }
