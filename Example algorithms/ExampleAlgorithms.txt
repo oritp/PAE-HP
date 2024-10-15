@@ -21,3 +21,6 @@ Description:    Feature extraction: planes, isolated points
 FAST-LIO2: https://github.com/hku-mars/FAST_LIO
 Description:    Point-based + IMU
                 iEKF, ikd-Tree
+
+FF-LINS: https://github.com/i2Nav-WHU/FF-LINS
+Description:    
