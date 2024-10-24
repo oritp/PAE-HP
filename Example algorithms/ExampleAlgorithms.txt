@@ -1,12 +1,15 @@
 Algorithms with Github Links:
 
+HP example: https://github.com/ramonvp/pae_q1_2425
+
 KISS-ICP: https://github.com/PRBonn/kiss-icp
 Description:    Point-based ICP.
                 Novel idea: adaptative thresholding for ICP registration.
                 Constant-velocity motion prediction (both for within and between frames).
                 CPU only, code already optimized.
 
-Livox LOAM: https://github.com/Livox-SDK/livox_mapping
+Livox LOAM: https://github.com/hku-mars/loam_livox
+            https://github.com/Livox-SDK/livox_mapping
 Description:    Feature extraction: planes, edges.
                 Feature tracking by ICP in adjacent scans.
                 Motion solved by Levenberg-Marquardt.
