@@ -140,8 +140,10 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
   add_executable(icp_test_node src/icp_algorithm.cpp)
   add_executable(icp_test_node_v2 src/icp_algorithm_v2.cpp)
+  add_executable(icp_test_node_v6 src/icp_algorithm_v6.cpp)
   target_link_libraries(icp_test_node ${catkin_LIBRARIES} ${PCL_LIBRARIES})
   target_link_libraries(icp_test_node_v2 ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+  target_link_libraries(icp_test_node_v6 ${catkin_LIBRARIES} ${PCL_LIBRARIES})
 
 
 
