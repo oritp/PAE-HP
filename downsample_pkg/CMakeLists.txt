@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(pcl_filter)
+project(downsample_pkg)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
 if(NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 14)
+  set(CMAKE_CXX_STANDARD 17)
 endif()
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 #  add_compile_options(-Wall -Wextra -Wpedantic -fPIC)
@@ -67,3 +67,11 @@ add_dependencies(pcl_filter_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EX
 add_executable(example1_to_rosbag src/example1_to_rosbag.cpp)
 target_link_libraries(example1_to_rosbag ${catkin_LIBRARIES} ${PCL_LIBRARIES})
 add_dependencies(example1_to_rosbag ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+add_executable(downsample_prova_algorithm src/downsample_prova_algorithm.cpp)
+target_link_libraries(downsample_prova_algorithm ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+add_dependencies(downsample_prova_algorithm ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+add_executable(icp_downsample_prova src/icp_downsample_prova.cpp)
+target_link_libraries(icp_downsample_prova ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+add_dependencies(icp_downsample_prova ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>pcl_filter</name>
+  <name>downsample_pkg</name>
   <version>1.0.0</version>
   <description>The pcl_filter package allows to filter a pointcloud by distance</description>
 
