@@ -1,0 +1,9 @@
+ICP Test Algorithms
+
+icp_algorithm_v1-0 -> simply version of icp algorithm (there is rotation)
+icp_algorithm_v1-1 -> version 1 + publish only last cloud
+icp_algorithm_v3 -> version 1 + downsampling + extract features
+icp_algorithm_v5 -> version 1 + downsampling + extract features FPFH + RANSAC filtre
+* icp_algorithm_v7 -> version 5 + circular buffer
+
+* it is the most updated version
