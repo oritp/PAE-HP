@@ -1,0 +1,30 @@
+Algorithms with Github Links:
+
+HP Example:     https://github.com/ramonvp/pae_q1_2425
+
+KISS-ICP:       https://github.com/PRBonn/kiss-icp
+Description:    Point-based ICP.
+                Novel idea: adaptative thresholding for ICP registration.
+                Constant-velocity motion prediction (both for within and between frames).
+                CPU only, code already optimized.
+
+Livox LOAM:     https://github.com/hku-mars/loam_livox
+Livox Mapping:  https://github.com/Livox-SDK/livox_mapping
+Description:    Feature extraction: planes, edges.
+                Feature tracking by ICP in adjacent scans.
+                Motion solved by Levenberg-Marquardt.
+                Optional loop closure.
+                CPU only. Number of threads used for ICP can be controlled.
+
+Livox LIO:      https://github.com/Livox-SDK/LIO-Livox
+Description:    Feature extraction: planes, isolated points
+                Optionally filter dynamic objects
+                Optionally can use IMU
+
+FAST-LIO2:      https://github.com/hku-mars/FAST_LIO
+Description:    Point-based + IMU
+                iEKF, ikd-Tree
+
+FF-LINS:        https://github.com/i2Nav-WHU/FF-LINS
+
+PCL-ICP-NDT:    https://github.com/Stan994265/PCL-ICP-NDT
