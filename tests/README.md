@@ -7,4 +7,4 @@ The following can be distinguished:
 - **downsampling:** Test codes that reduces samples in the point clouds in order to be able to be aligned, reducing the computational load.
 - **noise_removal:** Test codes that perform the removal of possible existing noise in different point clouds.
 - **segmentation:** Test codes that clusters points into distinct semantic parts representing surfaces, objects, or structures in the environment.
-- **alignement:** Test codes that align consecutive point clouds using different methods, such as feature extraction.
+- **alignment:** Test codes that align consecutive point clouds using different methods, such as feature extraction.
