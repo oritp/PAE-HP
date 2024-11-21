@@ -1,10 +1,20 @@
-ICP Test Algorithms
+ALIGNMENT TEST ALGORITHMS
 
 icp_algorithm_v1-0 -> simply version of icp algorithm (there is rotation)
 icp_algorithm_v1-1 -> version 1 + publish only last cloud
 icp_algorithm_v3 -> version 1 + downsampling + extract features
 icp_algorithm_v5 -> version 1 + downsampling + extract features FPFH + RANSAC filtre
 icp_algorithm_v7 -> version 5 + circular buffer
-* icp_algorithm_v8 -> version 7 + trajectory estimation
+* icp_algorithm_v10 -> version 7 + only update new points in accumulated cloud
 
 * it is the most updated version
+
+STATISTICS
+
+first version: 9 min 39 seg
+icp_algorithm_v7: 2 min 37 seg
+                  accumulated_cloud -> 23000 points aprox
+                  aligned_cloud -> 2100 points aprox
+icp_algorithm_v10: 1 min 58 seg
+                  accumulated_cloud -> 3000 points aprox
+                  aligned_cloud -> 2500 points aprox
