@@ -158,7 +158,7 @@ void pointCloudCallback(const sensor_msgs::PointCloud2ConstPtr& msg) {
             point_cloud_buffer.pop_front();
         }
 
-        // Update the accumulated cloud with those in the buffer
+        // Update the accumulated cloud with those in the buffer (radius=20cm)
         updateAccumulatedCloud(0.2);
         ROS_INFO("Accumulated cloud # points: %ld", accumulated_cloud->points.size());
         ROS_INFO("Aligned cloud # points: %ld", aligned_cloud->points.size());
