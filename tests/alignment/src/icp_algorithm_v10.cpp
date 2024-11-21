@@ -116,12 +116,10 @@ void pointCloudCallback(const sensor_msgs::PointCloud2ConstPtr& msg) {
     extractFPFHFeatures(input_cloud, source_features);
     extractFPFHFeatures(accumulated_cloud, target_features);
 
-    // Configure ICP (Iterative Closest Point) with FPFH based correspondences
-    pcl::IterativeClosestPoint<PointT, PointT> icp;
+    // Estimate FPFH based correspondences
     pcl::registration::CorrespondenceEstimation<pcl::FPFHSignature33, pcl::FPFHSignature33> estimator;
     estimator.setInputSource(source_features);
     estimator.setInputTarget(target_features);
-    
     pcl::CorrespondencesPtr correspondences(new pcl::Correspondences);
     estimator.determineCorrespondences(*correspondences);
 
@@ -130,10 +128,12 @@ void pointCloudCallback(const sensor_msgs::PointCloud2ConstPtr& msg) {
     rejector.setInputSource(input_cloud);
     rejector.setInputTarget(accumulated_cloud);
     rejector.setInputCorrespondences(correspondences);
-    pcl::Correspondences inliers;
-    rejector.getCorrespondences(inliers);
+    pcl::CorrespondencesPtr inliers(new pcl::Correspondences);
+    rejector.getCorrespondences(*inliers);
+    Eigen::Matrix4f transformation = rejector.getBestTransformation();
     
     // Align the clouds by applying ICP efficiently
+    pcl::IterativeClosestPoint<PointT, PointT> icp;
     icp.setInputSource(input_cloud);
     icp.setInputTarget(accumulated_cloud);
     icp.setMaxCorrespondenceDistance(0.5);
