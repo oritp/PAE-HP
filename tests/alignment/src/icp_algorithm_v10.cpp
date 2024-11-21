@@ -53,7 +53,6 @@ void updateAccumulatedCloud(double radius) {
         }
 
         for (const auto& point : cloud->points) {
-            // Buscar vecinos cercanos al punto actual en un radio de 2 cm.
             if (!accumulated_cloud->points.empty()) {
                 std::vector<int> point_index;
                 std::vector<float> point_sqrt_distance;
