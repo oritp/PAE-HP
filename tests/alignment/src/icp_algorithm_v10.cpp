@@ -141,7 +141,7 @@ void pointCloudCallback(const sensor_msgs::PointCloud2ConstPtr& msg) {
     icp.setTransformationEpsilon(1e-6);
 
     PointCloudT::Ptr aligned_cloud(new PointCloudT);
-    icp.align(*aligned_cloud);
+    icp.align(*aligned_cloud, transformation);
     
     /* if (icp.hasConverged() && icp.getFitnessScore() > 0.09) {
         ROS_INFO("ICP exceeds fitness score.");
