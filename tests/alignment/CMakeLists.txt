@@ -148,18 +148,24 @@ include_directories(
   add_executable(icp_node_v3 src/icp_algorithm_v3.cpp)
   add_executable(icp_node_v5 src/icp_algorithm_v5.cpp)
   add_executable(icp_node_v7 src/icp_algorithm_v7.cpp)
+  add_executable(icp_node_v10 src/icp_algorithm_v10.cpp)
+
   
   target_link_libraries(icp_node_v1-0 ${catkin_LIBRARIES} ${PCL_LIBRARIES})
   target_link_libraries(icp_node_v1-1 ${catkin_LIBRARIES} ${PCL_LIBRARIES})
   target_link_libraries(icp_node_v3 ${catkin_LIBRARIES} ${PCL_LIBRARIES})
   target_link_libraries(icp_node_v5 ${catkin_LIBRARIES} ${PCL_LIBRARIES})
   target_link_libraries(icp_node_v7 ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+  target_link_libraries(icp_node_v10 ${catkin_LIBRARIES} ${PCL_LIBRARIES})
+
   
   add_dependencies(icp_node_v1-0 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
   add_dependencies(icp_node_v1-1 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
   add_dependencies(icp_node_v3 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
   add_dependencies(icp_node_v5 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
   add_dependencies(icp_node_v7 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+  add_dependencies(icp_node_v10 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
   
 
 ## Rename C++ executable without prefix
