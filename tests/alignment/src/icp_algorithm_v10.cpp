@@ -21,6 +21,7 @@ using PointCloudFPFH = pcl::PointCloud<pcl::FPFHSignature33>;
 // Circular buffer and its size, to store the last point clouds
 std::deque<PointCloudT::Ptr> point_cloud_buffer;
 const size_t BUFFER_SIZE = 10;
+int N_cloud = 0;
 // Aligned cloud publisher and accumulated cloud object
 ros::Publisher pub_aligned_cloud;
 PointCloudT::Ptr accumulated_cloud(new PointCloudT);
@@ -148,7 +149,8 @@ void pointCloudCallback(const sensor_msgs::PointCloud2ConstPtr& msg) {
     }
     else if (icp.hasConverged() && icp.getFitnessScore() < 0.09) { */
     if (icp.hasConverged()) {
-        ROS_INFO("ICP converged, fitness score: %f", icp.getFitnessScore());
+        N_cloud ++;
+	ROS_INFO("%d: ICP converged, fitness score: %f", N_cloud, icp.getFitnessScore());
 
         // Add the aligned cloud to the buffer
         point_cloud_buffer.push_back(aligned_cloud);
