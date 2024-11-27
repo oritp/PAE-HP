@@ -21,19 +21,42 @@ using PointCloudFPFH = pcl::PointCloud<pcl::FPFHSignature33>;
 // Circular buffer and its size, to store the last point clouds
 std::deque<PointCloudT::Ptr> point_cloud_buffer;
 const size_t BUFFER_SIZE = 10;
-int N_cloud = 0;
 // Aligned cloud publisher and accumulated cloud object
 ros::Publisher pub_aligned_cloud;
 PointCloudT::Ptr accumulated_cloud(new PointCloudT);
 PointCloudT::Ptr show_cloud(new PointCloudT);
+int N_cloud = 0;
+
 
 // Function to downsample point clouds
-void downsamplePointCloud(PointCloudT::Ptr& cloud, float leaf_size = 0.2) {
+void downsamplePointCloud(PointCloudT::Ptr& cloud, float leaf_size) {
     pcl::VoxelGrid<PointT> voxel_grid;
     voxel_grid.setInputCloud(cloud);
     voxel_grid.setLeafSize(leaf_size, leaf_size, leaf_size);
     voxel_grid.filter(*cloud);
 }
+
+
+/*void filterPointCloud(PointCloudT::Ptr& cloud, float minDistance2, float maxDistance2) {
+    // Perform the distance filtering
+    PointCloudT::Ptr cloud_filtered(new PointCloudT);
+    cloud_filtered->points.resize(cloud->points.size());
+    for (size_t p=0; p < cloud->points.size(); p++)
+    {
+        // Do not compute sqrt() to avoid unnecessary computation
+        float pointDepth2 = (cloud->points[p].x * cloud->points[p].x) +
+                            (cloud->points[p].y * cloud->points[p].y) +
+                            (cloud->points[p].z * cloud->points[p].z);
+
+        // Keep point if it's within the threshold range
+        if (pointDepth2 >= minDistance2 && pointDepth2 <= maxDistance2)
+        {
+		cloud_filtered->points.push_back(cloud->points[p]);
+        }
+    }
+    cloud.swap(cloud_filtered);
+}*/
+
 
 // Function to accumulate point clouds from the buffer
 void updateAccumulatedCloud(double radius) {
@@ -42,7 +65,7 @@ void updateAccumulatedCloud(double radius) {
         return;
     }
     
-    pcl::PointCloud<pcl::PointXYZI>::Ptr filtered_cloud(new pcl::PointCloud<pcl::PointXYZI>);
+    PointCloudT::Ptr filtered_cloud(new PointCloudT);
     accumulated_cloud->clear();
     // Create a kdtree to look for neighbours in the actual accumulated cloud
     pcl::KdTreeFLANN<pcl::PointXYZI> kdtree;
@@ -100,7 +123,10 @@ void pointCloudCallback(const sensor_msgs::PointCloud2ConstPtr& msg) {
     pcl::fromROSMsg(*msg, *input_cloud);
     
     // Apply downsampling to reduce computational load
-    downsamplePointCloud(input_cloud);
+    downsamplePointCloud(input_cloud, 0.2);
+    
+    // Filter the point cloud to delete the robot's autodetection
+    // filterPointCloud(input_cloud, 1, 100);
     
     // If no cloud has been detected before, add it to the buffer and update the accumulated one
     if (point_cloud_buffer.empty()) {
@@ -137,20 +163,20 @@ void pointCloudCallback(const sensor_msgs::PointCloud2ConstPtr& msg) {
     pcl::IterativeClosestPoint<PointT, PointT> icp;
     icp.setInputSource(input_cloud);
     icp.setInputTarget(accumulated_cloud);
-    icp.setMaxCorrespondenceDistance(0.5);
-    icp.setMaximumIterations(50);
+    icp.setMaxCorrespondenceDistance(2);
+    icp.setMaximumIterations(100);
     icp.setTransformationEpsilon(1e-6);
 
     PointCloudT::Ptr aligned_cloud(new PointCloudT);
     icp.align(*aligned_cloud, transformation);
     
-    /* if (icp.hasConverged() && icp.getFitnessScore() > 0.09) {
+    /*if (icp.hasConverged() && icp.getFitnessScore() > 0.09) {
         ROS_INFO("ICP exceeds fitness score.");
     }
     else if (icp.hasConverged() && icp.getFitnessScore() < 0.09) { */
     if (icp.hasConverged()) {
         N_cloud ++;
-	ROS_INFO("%d: ICP converged, fitness score: %f", N_cloud, icp.getFitnessScore());
+        ROS_INFO("%d: ICP converged, fitness score: %f", N_cloud, icp.getFitnessScore());
 
         // Add the aligned cloud to the buffer
         point_cloud_buffer.push_back(aligned_cloud);
@@ -162,6 +188,7 @@ void pointCloudCallback(const sensor_msgs::PointCloud2ConstPtr& msg) {
 
         // Update the accumulated cloud with those in the buffer (radius=20cm)
         updateAccumulatedCloud(0.2);
+       
         ROS_INFO("Accumulated cloud # points: %ld", accumulated_cloud->points.size());
         ROS_INFO("Aligned cloud # points: %ld", aligned_cloud->points.size());
         
@@ -179,6 +206,7 @@ void pointCloudCallback(const sensor_msgs::PointCloud2ConstPtr& msg) {
     }
 }
 
+
 int main(int argc, char** argv) {
     // ROS node initialization
     ros::init(argc, argv, "icp_pointcloud_node");
@@ -186,13 +214,12 @@ int main(int argc, char** argv) {
     ros::NodeHandle private_nh("~");
     
     // Subscription to the input topic and publication of the aligned result
-    ros::Subscriber sub = nh.subscribe("/livox/lidar", 100, pointCloudCallback);
+    ros::Subscriber sub = nh.subscribe("/livox/lidar", 400, pointCloudCallback);
     ROS_INFO("Point Cloud Subscriber is ready.");
-    pub_aligned_cloud = nh.advertise<sensor_msgs::PointCloud2>("aligned_cloud", 100);
+    pub_aligned_cloud = nh.advertise<sensor_msgs::PointCloud2>("aligned_cloud", 400);
     ROS_INFO("Point Cloud Publisher is ready.");
 
     ros::spin();
     
     return EXIT_SUCCESS;
 }
-
