@@ -6,6 +6,7 @@ icp_algorithm_v3 -> version 1 + downsampling + extract features
 icp_algorithm_v5 -> version 1 + downsampling + extract features FPFH + RANSAC filtre
 icp_algorithm_v7 -> version 5 + circular buffer
 * icp_algorithm_v10 -> version 7 + only update new points in accumulated cloud
+icp_algorithm_v10-1 -> version 10 + without FPFH and RANSAC
 
 * it is the most updated version
 
