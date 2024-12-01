@@ -12,6 +12,7 @@ icp_algorithm_v10-1 -> version 10 + without FPFH and RANSAC
 
 STATISTICS
 
+duration of the HP dataset (rosbag): 39.40 seg
 first version: 9 min 39 seg
 icp_algorithm_v7: 2 min 37 seg
                   accumulated_cloud -> 23000 points aprox
