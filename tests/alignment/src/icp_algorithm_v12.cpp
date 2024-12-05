@@ -1,33 +1,25 @@
-#include <deque>
-#include <vector> 
-#include <pcl/common/centroid.h>
-#include <pcl/kdtree/kdtree_flann.h>
 #include <ros/ros.h>
 #include <sensor_msgs/PointCloud2.h>
+#include <Eigen/Dense>
+#include <pcl/common/centroid.h>
+#include <pcl/kdtree/kdtree_flann.h>
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
 #include <pcl_conversions/pcl_conversions.h>
 #include <pcl/filters/passthrough.h>
 #include <pcl/filters/voxel_grid.h>
-#include <pcl/features/normal_3d.h>
-#include <pcl/features/fpfh.h>
 #include <pcl/registration/icp.h>
-#include <pcl/registration/correspondence_estimation.h>
-#include <pcl/registration/correspondence_rejection_sample_consensus.h>
 
 
 using PointT = pcl::PointXYZI;
 using PointCloudT = pcl::PointCloud<PointT>;
-using PointCloudFPFH = pcl::PointCloud<pcl::FPFHSignature33>;
 
-// Aligned cloud publisher and accumulated cloud object
 ros::Publisher pub_aligned_cloud;
 PointCloudT::Ptr input_cloud(new PointCloudT);
 PointCloudT::Ptr accumulated_cloud(new PointCloudT);
-PointCloudT::Ptr show_cloud(new PointCloudT);
-int N_cloud = 0;
 Eigen::Matrix4f initial_transform = Eigen::Matrix4f::Identity();
 bool is_first_cloud = true;
+int N_cloud = 0;
 
 
 // Function to downsample point clouds
@@ -39,6 +31,7 @@ void downsamplePointCloud(PointCloudT::Ptr& cloud, float leaf_size) {
 }
 
 
+// Function to filter by height and extract the ceiling
 void filterByHeight(const PointCloudT::Ptr& input_cloud, PointCloudT::Ptr& output_cloud, float min_height, float max_height) {
     pcl::PassThrough<pcl::PointXYZI> pass;
     pass.setInputCloud(input_cloud);
@@ -71,7 +64,7 @@ void pointCloudCallback(const sensor_msgs::PointCloud2ConstPtr& msg) {
     PointCloudT::Ptr cloud(new PointCloudT);
     pcl::fromROSMsg(*msg, *cloud);
     
-    filterByHeight(cloud, input_cloud, -2, 1.8);
+    filterByHeight(cloud, input_cloud, -2, 1.7);
     
     // Apply downsampling to reduce computational load
     downsamplePointCloud(input_cloud, 0.15);
@@ -107,7 +100,6 @@ void pointCloudCallback(const sensor_msgs::PointCloud2ConstPtr& msg) {
         ROS_INFO("Accumulated cloud # points: %ld", accumulated_cloud->points.size());
         ROS_INFO("Aligned cloud # points: %ld", aligned_cloud->points.size());
         
-        // Update the showing cloud
         *accumulated_cloud += *aligned_cloud;
 
         // Publish the updated accumulated cloud
@@ -124,7 +116,7 @@ void pointCloudCallback(const sensor_msgs::PointCloud2ConstPtr& msg) {
 
 int main(int argc, char** argv) {
     // ROS node initialization
-    ros::init(argc, argv, "icp_pointcloud_node");
+    ros::init(argc, argv, "alignment_node");
     ros::NodeHandle nh;
     ros::NodeHandle private_nh("~");
     
