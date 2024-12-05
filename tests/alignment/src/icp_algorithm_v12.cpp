@@ -102,7 +102,7 @@ void pointCloudCallback(const sensor_msgs::PointCloud2ConstPtr& msg) {
 
         initial_transform = icp.getFinalTransformation();
        
-        filterRedundantPoints(aligned_cloud, accumulated_cloud, 0.08f);
+        filterRedundantPoints(aligned_cloud, accumulated_cloud, 0.05f);
        
         ROS_INFO("Accumulated cloud # points: %ld", accumulated_cloud->points.size());
         ROS_INFO("Aligned cloud # points: %ld", aligned_cloud->points.size());
