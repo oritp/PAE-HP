@@ -4,4 +4,4 @@ Here you can find useful information for the development of the project, as well
 
 You can see the following files:
 - **example_argorithms:** Compilation of interesting algorithms for inspiration in the development of the project.
-- **User guides:** They will be uploaded soon.
+- **The PointCloud Tailor Guide:** Complete guide with all the steps to follow both to develop the project from scratch and to run it from this same repository and display the results correctly..
