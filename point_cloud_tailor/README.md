@@ -75,10 +75,6 @@ Then, you have to place yourself in the same directory where the dataset bag is 
     cd ~/catkin_ws/src/PAE-HP/rosbags/
     rosbag play livox_room.bag
 
-Additionally, we have added a ROS service that can be called in another terminal window at any time to save the final aligned point cloud result in `.pcd` format in the directory where the program is running:
-
-    rosservice /save_pcd
-
 ### Services
 
 Additionally, we have added several ROS services that perform different functions that we found useful to validate the correct operation of the algorithm.
