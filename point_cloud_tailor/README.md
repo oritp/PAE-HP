@@ -72,7 +72,7 @@ If you want to see the complete detection of the room, add the argument _show_ce
 
 Then, you have to place yourself in the same directory where the dataset bag is located, and decompress the bag file. You can be located in the rosbags directory or write the full path in the bag’s name. Finally, in another terminal, publish the point clouds to the topic using:
 
-    cd ~/catkin_ws/PAE-HP/rosbags/
+    cd ~/catkin_ws/src/PAE-HP/rosbags/
     rosbag play livox_room.bag
 
 Additionally, we have added a ROS service that can be called in another terminal window at any time to save the final aligned point cloud result in `.pcd` format:
