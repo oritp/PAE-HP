@@ -25,7 +25,7 @@ In addition, it is necessary to install the _Eigen_ library, that is a mathemati
 Install the library:
 
     sudo apt install libeigen3-dev
-
+Además, hemos añadido un servicio de ROS al que se puede llamar en cualquier momento para que guarde el resultado de la nube de puntos final alineada en formato .pcd.
 Verify that it has been installed correctly:
 
     ls /usr/include/eigen3
@@ -75,7 +75,7 @@ Then, you have to place yourself in the same directory where the dataset bag is 
     cd ~/catkin_ws/src/PAE-HP/rosbags/
     rosbag play livox_room.bag
 
-Additionally, we have added a ROS service that can be called in another terminal window at any time to save the final aligned point cloud result in `.pcd` format n the directory where the program is running:
+Additionally, we have added a ROS service that can be called in another terminal window at any time to save the final aligned point cloud result in `.pcd` format in the directory where the program is running:
 
     rosservice /save_pcd
 
