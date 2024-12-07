@@ -64,7 +64,7 @@ In another terminal, you can easily run the program through the launch file:
 
     roslaunch point_cloud_tailor alignment.launch
 
-What you are doing is to execute the alignment.lauch file found in the point_cloud_tailor package. This will run the node by default, and the ceiling will not be shown, also it will launch an RViz window with all parameters initialized. 
+What you are doing is to execute the _alignment.lauch_ file found in the point_cloud_tailor package. This will run the node by default, and the ceiling will not be shown, also it will launch an RViz window with all parameters initialized. 
 
 If you want to see the complete detection of the room, add the argument _show_ceiling:=true_:
     
