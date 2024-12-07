@@ -75,7 +75,7 @@ Then, you have to place yourself in the same directory where the dataset bag is 
     cd ~/catkin_ws/src/PAE-HP/rosbags/
     rosbag play livox_room.bag
 
-### Services
+### 2.3. Services
 
 Additionally, we have added several ROS services that perform different functions that we found useful to validate the correct operation of the algorithm.
 
@@ -91,4 +91,4 @@ And with the last one, we can collapse the final point cloud result into a 2D im
 
     rosservice call /2D_map
 
-### 4. Results
+## 3. Results
