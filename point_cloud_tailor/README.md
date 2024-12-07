@@ -79,5 +79,20 @@ Additionally, we have added a ROS service that can be called in another terminal
 
     rosservice /save_pcd
 
+### Services
 
-### 3. Results
+Additionally, we have added several ROS services that perform different functions that we found useful to validate the correct operation of the algorithm.
+
+In another terminal window you can call a service at any time to save the final aligned point cloud result in .pcd format in the directory where the program is running:
+
+    rosservice call /save_pcd
+
+For this other service we have applied SLAM in order to show the trajectory made by the robot with the LiDAR sensor:
+
+    rosservice call /trajectory
+
+And with the last one, we can collapse the final point cloud result into a 2D image in order to check the quality of the construction maps:
+
+    rosservice call /2D_map
+
+### 4. Results
