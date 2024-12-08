@@ -34,9 +34,9 @@ Verify that it has been installed correctly:
 
 ### 2.1. Cloning the Project
 
-First of all, you have to clone the GitHub repository that contains the final project in your workspace, to later execute it.
+First of all, you have to clone in your workspace the GitHub repository that contains the final project, to later execute it.
 
-Using the terminal, go to the src directory of your _Catkin_ workspace and access the Github repository: https://github.com/albert-tomas/PAE-HP. Clone it into your workspace using the following command:
+Using the terminal, go to the _src_ directory of your _Catkin_ workspace and access the Github repository: https://github.com/albert-tomas/PAE-HP. Clone it into your workspace using the following command:
 
     cd ~/catkin_ws/src/
     git clone https://github.com/albert-tomas/PAE-HP.git
@@ -46,7 +46,7 @@ Then, you must go to the root of your workspace (_catkin_ws_), making a jump bac
     cd ~/catkin_ws/
     catkin_make
 
-At this time, as always before starting to run ROS in a terminal, it would be necessary to update the ROS environment with your workspace, but if you have previously modified our _~/.bashrc_ file adding the configuration of your workspace it will not be necessary, since when opening a new terminal it will do it by default. 
+At this time, as always before starting to run ROS in a terminal, it would be necessary to update the ROS environment with your workspace, but if you have previously modified your _~/.bashrc_ file adding the configuration of your workspace it will not be necessary, since when opening a new terminal it will do it by default. 
 
 If you have not done, do this:
 
@@ -56,11 +56,7 @@ If you have not done, do this:
 
 Now you have everything ready to start working, you just have to follow the steps that we detail below:
 
-In a terminal, run the ROS Master: 
-
-    roscore
-
-In another terminal, you can easily run the program through the launch file:
+Running the ROS Master is not necessary if you are going to run the program with a launch file, so in a terminal window, you can easily run the program like this:
 
     roslaunch point_cloud_tailor alignment.launch
 
