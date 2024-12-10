@@ -1,0 +1,18 @@
+% Define the point at (0, 0, 0)
+singlePoint = [0, 0, 0]; % A single 3D point
+
+
+
+% Create the point cloud
+pc = pointCloud(singlePoint,'MarkerSize', 10);
+
+figure
+pcshow(pc)
+hold on
+drawnow;
+
+transformedPC = pctransform(pc, tform2);
+
+
+pcshow(transformedPC,'MarkerSize', 10)
+drawnow;
