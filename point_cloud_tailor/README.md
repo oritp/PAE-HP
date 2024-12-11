@@ -60,7 +60,7 @@ Running the ROS Master is not necessary if you are going to run the program with
 
     roslaunch point_cloud_tailor alignment.launch
 
-What you are doing is to execute the _alignment.lauch_ file found in the point_cloud_tailor package. This will run the node by default, and the ceiling will not be shown, also it will launch an RViz window with all parameters initialized. 
+What you are doing is to execute the _alignment.lauch_ file found in the point_cloud_tailor package. This will run all the nodes by default, and the ceiling will not be shown, also it will launch an RViz window with all parameters initialized. 
 
 If you want to see the complete detection of the room, add the argument _show_ceiling:=true_:
     
@@ -83,8 +83,6 @@ For this other service we have applied SLAM in order to show the trajectory made
 
     rosservice call /trajectory
 
-And with the last one, we can collapse the final point cloud result into a 2D image in order to check the quality of the construction maps:
-
-    rosservice call /2D_map
+To end, we have created a simple program, that you can run whenever you want, capable of reading the final point cloud result in .pcd format, which after properly filtering it and collapsing its vertical axis, we obtain a 2D image in order to check the quality of the construction maps:
 
 ## 3. Results
