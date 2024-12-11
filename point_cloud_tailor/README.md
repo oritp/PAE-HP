@@ -25,7 +25,7 @@ In addition, it is necessary to install the _Eigen_ library, that is a mathemati
 Install the library:
 
     sudo apt install libeigen3-dev
-Además, hemos añadido un servicio de ROS al que se puede llamar en cualquier momento para que guarde el resultado de la nube de puntos final alineada en formato .pcd.
+
 Verify that it has been installed correctly:
 
     ls /usr/include/eigen3
