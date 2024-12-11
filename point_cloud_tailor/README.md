@@ -79,10 +79,10 @@ In another terminal window you can call a service at any time to save the final 
 
     rosservice call /save_pcd
 
-For this other service we have applied SLAM in order to show the trajectory made by the robot with the LiDAR sensor:
+For this other service we have applied _SLAM_ in order to show the trajectory made by the robot with the LiDAR sensor:
 
-    rosservice call /trajectory
+    rosservice call /publish_trajectory
 
-To end, we have created a simple program, that you can run whenever you want, capable of reading the final point cloud result in .pcd format, which after properly filtering it and collapsing its vertical axis, we obtain a 2D image in order to check the quality of the construction maps:
+To end, we have created a simple program, that you can run whenever you want, capable of reading the final point cloud result in `.pcd` format, which after properly filtering it and collapsing its vertical axis, we obtain a 2D image in order to check the quality of the construction maps:
 
 ## 3. Results
