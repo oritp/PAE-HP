@@ -1,6 +1,6 @@
 # Rosbags
 
-Here you can find a set of files with point cloud data in `.bag` format to test the correct operation of the program.
+Here you can find a set of files with point cloud data in `.bag` format to validate the correct operation of the program.
 
 The bag file format is very efficient for both recording and replaying messages in ROS, as it works similar to how ROS nodes subscribe and publish via ROS topics. With these files we can collect the point clouds captured by the LiDAR sensor at a given moment, and then reproduce them to simulate that we are doing it in real time.
 
