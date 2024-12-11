@@ -9,7 +9,7 @@ icp_algorithm_v10 -> version 7 + only update new points in accumulated cloud
 icp_algorithm_v11 -> version 10 + without FPFH and RANSAC + result OK!
 icp_algorithm_v12 -> version 11 + without circular buffer + result OK!
 icp_algorithm_v12_pose_estimation -> version 12 + trajectory estimation
-* icp_algorithm_v14 -> version 12 + services and launch arguments
+* icp_algorithm_v14 -> version 12 + services and launch arguments + result OK!
 
 * it is the most updated version
 
@@ -27,3 +27,4 @@ icp_algorithm_v11: 1 min 58 seg
                   accumulated_cloud -> 3000 points aprox
                   aligned_cloud -> 2500 poins aprox
 icp_algorithm_v12: real time!
+icp_algorithm_v14: real time!
