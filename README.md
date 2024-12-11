@@ -9,6 +9,6 @@ We have developed the algorithms using _C++_ language, and worked mainly with _P
 
 You will be able to find the following:
 - **resources**: User guides for installing and running the program, as well as useful information.
-- **rosbags:** Set of files with point cloud data in `.bag` format to test the correct operation of the program.
+- **rosbags:** Set of files with point cloud data to validate the correct operation of the program.
 - **tests:** Tests and prototypes of the different resources implemented in the final version of the project.
 - **point_cloud_tailor:** The PointCloud Tailor's final version program.
