@@ -73,7 +73,7 @@ void pointCloudCallback(const sensor_msgs::PointCloud2ConstPtr& msg) {
     filterByHeight(cloud, input_cloud, min_height, max_height);
     
     // Apply downsampling to reduce computational load
-    downsamplePointCloud(input_cloud, 0.15);
+    downsamplePointCloud(input_cloud, 0.2);
     
     // If it is the first cloud update the accumulated one with it
     if (is_first_cloud) {
@@ -87,8 +87,8 @@ void pointCloudCallback(const sensor_msgs::PointCloud2ConstPtr& msg) {
     pcl::IterativeClosestPoint<PointT, PointT> icp;
     icp.setInputSource(input_cloud);
     icp.setInputTarget(accumulated_cloud);
-    icp.setMaxCorrespondenceDistance(1);
-    icp.setMaximumIterations(50);
+    icp.setMaxCorrespondenceDistance(0.1);
+    icp.setMaximumIterations(30);
     icp.setTransformationEpsilon(1e-6);
 
     PointCloudT::Ptr aligned_cloud(new PointCloudT);
@@ -148,9 +148,9 @@ int main(int argc, char** argv) {
     max_height = (show_ceiling) ? 3.0f : 1.7f;
     
     // Subscription to the input topic and publication of the aligned result
-    ros::Subscriber sub = nh.subscribe("/livox/lidar", 400, pointCloudCallback);
+    ros::Subscriber sub = nh.subscribe("/livox/lidar", 100, pointCloudCallback);
     ROS_INFO("Point Cloud Subscriber is ready.");
-    pub_aligned_cloud = nh.advertise<sensor_msgs::PointCloud2>("aligned_cloud", 400);
+    pub_aligned_cloud = nh.advertise<sensor_msgs::PointCloud2>("aligned_cloud", 100);
     ROS_INFO("Point Cloud Publisher is ready.");
     
     // Advertise the service to save point cloud
