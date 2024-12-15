@@ -71,21 +71,31 @@ Then, you have to place yourself in the same directory where the dataset bag is 
 
 Additionally, we have added several ROS services that perform different functions that we found useful to validate the correct operation of the algorithm.
 
+#### a) Save PCD
+
 In another terminal window you can call a service at any time to save the final aligned point cloud result in .pcd format in the directory where the program is running:
 
     rosservice call /save_pcd
+
+#### b) Publish Trajectory
 
 For this other service we have applied _SLAM_ in order to show the trajectory made by the robot with the LiDAR sensor:
 
     rosservice call /publish_trajectory
 
+#### c) Show Ceiling
+
 If you want to see the complete detection of the room, including the ceiling, add the argument _show_ceiling:=true_:
 
     roslaunch point_cloud_tailor alignment.launch show_ceiling:=true
 
+#### d) Don't Publish on RViz
+
 In case you do not want to use or publish on RViz the final aligned cloud, you can add the argument _publish_cloud:=false_, if you do not write anything the program will run by default de visualization:
 
     roslaunch point_cloud_tailor alignment.launch publish_cloud:=false
+
+#### e) 2D Map (PCD to BMP)
 
 To end, we have created a simple program _2D_map.cpp_, that you can run whenever you want, capable of reading the final point cloud result in .pcd format, which after properly filtering it and collapsing its vertical axis, we obtain a 2D image in .bmp format in order to check the quality of the construction maps:
 
