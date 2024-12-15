@@ -62,16 +62,12 @@ Running the ROS Master is not necessary if you are going to run the program with
 
 What you are doing is to execute the _alignment.lauch_ file found in the point_cloud_tailor package. This will run all the nodes by default, and the ceiling will not be shown, also it will launch an RViz window with all parameters initialized. 
 
-If you want to see the complete detection of the room, add the argument _show_ceiling:=true_:
-    
-    roslaunch point_cloud_tailor alignment.launch show_ceiling:=true
-
 Then, you have to place yourself in the same directory where the dataset bag is located, and decompress the bag file. You can be located in the rosbags directory or write the full path in the bag’s name. Finally, in another terminal, publish the point clouds to the topic using:
 
     cd ~/catkin_ws/src/PAE-HP/rosbags/
     rosbag play livox_room.bag
 
-### 2.3. Services
+### 2.3. Additional Features
 
 Additionally, we have added several ROS services that perform different functions that we found useful to validate the correct operation of the algorithm.
 
@@ -83,6 +79,24 @@ For this other service we have applied _SLAM_ in order to show the trajectory ma
 
     rosservice call /publish_trajectory
 
-To end, we have created a simple program, that you can run whenever you want, capable of reading the final point cloud result in `.pcd` format, which after properly filtering it and collapsing its vertical axis, we obtain a 2D image in order to check the quality of the construction maps:
+If you want to see the complete detection of the room, including the ceiling, add the argument _show_ceiling:=true_:
 
-## 3. Results
+    roslaunch point_cloud_tailor alignment.launch show_ceiling:=true
+
+In case you do not want to use or publish on RViz the final aligned cloud, you can add the argument _publish_cloud:=false_, if you do not write anything the program will run by default de visualization:
+
+    roslaunch point_cloud_tailor alignment.launch publish_cloud:=false
+
+To end, we have created a simple program _2D_map.cpp_, that you can run whenever you want, capable of reading the final point cloud result in .pcd format, which after properly filtering it and collapsing its vertical axis, we obtain a 2D image in .bmp format in order to check the quality of the construction maps:
+
+If it is not compiled, compile the program using the following command that explains its dependencies:
+
+    g++ -o 2D_map 2D_map.cpp -I/usr/include/pcl-1.10 -I/usr/include/eigen3 -lpcl_common -lpcl_io -lpcl_filters
+
+Then, you can run the program by default (without showing the ceiling of the room) like this:
+
+    ./2D_map cloud_name.pcd
+
+If you want to show the ceiling or you are working with taller walls you can add a number argument to define the desired height:
+
+    ./2D_map cloud_name.pcd [MAX_HEIGHT]
