@@ -14,7 +14,7 @@ You will be able to find the following:
 - **point_cloud_tailor:** The PointCloud Tailor's final version program.
 
 <p align="center">
-  <img src="https://github.com/albert-tomas/PAE-HP/blob/main/point_cloud_tailor/results/aligned_cloud_ceiling_white.png" width="333" />
-  <img src="https://github.com/albert-tomas/PAE-HP/blob/main/point_cloud_tailor/results/aligned_cloud_map.bmp" width="333" />
-  <img src="https://github.com/albert-tomas/PAE-HP/blob/main/point_cloud_tailor/results/aligned_cloud_white.png" width="333" />
+  <img src="https://github.com/albert-tomas/PAE-HP/blob/main/point_cloud_tailor/results/aligned_cloud_ceiling_white.png" width="300" />
+  <img src="https://github.com/albert-tomas/PAE-HP/blob/main/point_cloud_tailor/results/aligned_cloud_map.bmp" width="300" />
+  <img src="https://github.com/albert-tomas/PAE-HP/blob/main/point_cloud_tailor/results/aligned_cloud_white.png" width="300" />
 </p>
