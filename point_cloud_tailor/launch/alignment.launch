@@ -1,0 +1,21 @@
+<launch>
+
+    <!-- Parameter to show ceiling or not -->
+    <arg name="show_ceiling" default="false" />
+    
+    <!-- Parameter to publish point cloud on RViz or not -->
+    <arg name="publish_cloud" default="true" />
+
+    <!-- Node to handle point cloud alignment -->
+    <node name="alignment_node" pkg="point_cloud_tailor" type="alignment_node" output="screen">
+        <param name="show_ceiling" value="$(arg show_ceiling)" />
+        <param name="publish_cloud" value="$(arg publish_cloud)" />
+    </node>
+    
+    <!-- Node to handle trajectory estimation -->
+    <node name="trajectory_node" pkg="point_cloud_tailor" type="trajectory_node" output="screen" />
+    
+    <!-- RViz Configuration -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find point_cloud_tailor)/rviz/rviz_config.rviz" />
+
+</launch>
