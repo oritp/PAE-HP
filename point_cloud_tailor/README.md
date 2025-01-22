@@ -81,7 +81,7 @@ In another terminal window you can call a service at any time to save the final 
 
 For this other service we have applied _SLAM_ in order to show the trajectory made by the robot with the LiDAR sensor:
 
-    rosservice call /publish_trajectory
+    rosservice call /trajectory
 
 #### c) Show Ceiling
 
