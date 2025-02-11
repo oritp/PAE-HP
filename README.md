@@ -1,5 +1,5 @@
 # The PointCloud Tailor
-## Advanced Engineering Project subject from _ETSETB_, _Polytechnical University of Catalonia_ (UPC) in collaboration with _Hewlett Packard_ (HP)
+## Advanced Engineering Project subject from _ETSETB_, _Polytechnical University of Catalonia_ (UPC) in collaboration with _Hewlett-Packard_ (HP)
 
 The goal of this project is to explore an extension of the _HP SitePrint_ robot features by adding the ability to check the accuracy of an already built building against specifications by scanning the construction elements using a LiDAR-enabled sensor.
 
