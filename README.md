@@ -1,3 +1,12 @@
+![University Project](https://img.shields.io/badge/University-UPC-blue)
+![Platform](https://img.shields.io/badge/Platform-ROS1%20Noetic-orange)
+![Sensor](https://img.shields.io/badge/Sensor-LiDAR-yellow)
+![Library](https://img.shields.io/badge/Library-PCL%20%7C%20Eigen-lightgrey)
+![C++](https://img.shields.io/badge/C++-62.9%25-red)
+![Matlab](https://img.shields.io/badge/Matlab-17.9%25-maroon)
+![CMake](https://img.shields.io/badge/CMake-19.2%25-purple)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
+
 # The PointCloud Tailor
 ## Advanced Engineering Project subject from _ETSETB_, _Polytechnical University of Catalonia_ (UPC) in collaboration with _Hewlett-Packard_ (HP)
 
